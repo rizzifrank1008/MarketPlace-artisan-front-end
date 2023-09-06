@@ -1,0 +1,14 @@
+<div class="ContainerCarrello">
+  <h2 *ngIf="cartItems.length === 0">Al momento non hai alcun prodotto nel carrello</h2>
+  <div class="cartProducts">
+      <div class="productDetails" *ngFor="let product of cartItems">
+          <div class="productImage">
+              <img [src]="product.image" [alt]="product.title">
+          </div>
+          <div class="productTitle">{{ product.title }}</div>
+          <div class="productDescription">{{ product.description }}</div>
+          <div class="productPrice">{{ product.price | currency: 'EUR' }}</div>
+          <!-- ... altri dettagli del prodotto ... -->
+      </div>
+  </div>
+</div>

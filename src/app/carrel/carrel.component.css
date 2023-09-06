@@ -1,0 +1,33 @@
+h2{
+    z-index: 7;
+    white-space: nowrap;
+    font-size: 30px;
+    line-height: 55px;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    font-family: Rokkitt;
+    text-transform: uppercase;
+    letter-spacing: 13px;
+    visibility: inherit;
+    transition: none 0s ease 0s;
+    text-align: inherit;
+    border-width: 0px;
+    margin: 0px;
+    padding: 0px;
+    min-height: 0px;
+    min-width: 0px;
+    max-height: none;
+    max-width: none;
+    opacity: 1;
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    transform-origin: 50% 50% 0px;
+}
+
+.ContainerCarrello{
+    display: flex;
+    flex-direction: column; /* Cambio di direzione in colonna */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}

@@ -1,0 +1,41 @@
+<header>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img src="assets/artisan.png" alt="Logo">
+        <span>NomSito</span>
+      </div>
+      <div class="navbar-links">
+        <a routerLink="/home" [class.active]="isActive('/home')">HOME</a>
+        <a routerLink="/prodotti" [class.active]="isActive('/prodotti')">PRODOTTI</a>
+        
+      </div>
+      <div class="navbar-search">
+        <input type="text" placeholder="Cerca...">
+        <button><i class="material-icons">search</i></button>
+      </div>
+      <div class="navbar-links">
+        <ng-container *ngIf="!isLoggedIn; else logged">
+          <a routerLink="/login" [class.active]="isActive('/login')">LOGIN</a>
+          <a routerLink="/registration" [class.active]="isActive('/registration')">REGISTRATI</a>
+        </ng-container>
+        <ng-template #logged>
+          <a (click)="logout()">LOGOUT</a>
+          <a routerLink="/pubblicazione" [class.active]="isActive('/pubblicazione')">INSERISCI ARTICOLO</a>
+        </ng-template>
+      </div>
+      
+      
+      <div class="navbar-cart">
+        <a routerLink="/carrel" [class.active]="isActive('/carrel')">
+          <i class="material-icons">shopping_cart</i>
+        </a>
+        <span class="cart-count">0</span>
+      </div>
+      
+      
+    </nav>
+  </header>
+  <main>
+    <!-- Contenuto principale dell'app -->
+  </main>
+  
