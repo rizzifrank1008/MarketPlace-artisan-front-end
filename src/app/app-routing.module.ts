@@ -13,14 +13,8 @@ const routes: Routes = [
   { path: 'prodotti', component: ProdottiComponent },
   { path: 'carrel', component: CarrelComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'pubblicazione', component: PubblicazioneComponent },
-  {
-    path: 'login',
-    component: LoginComponent, // Cambia con il nome del tuo componente di login
-    canActivate: [AuthRedirectGuard] // Applica la guardia
-  },
- 
+  { path: 'login', component: LoginComponent, canActivate: [AuthRedirectGuard] },
+  { path: 'pubblicazione', component: PubblicazioneComponent }
 ];
 
 @NgModule({

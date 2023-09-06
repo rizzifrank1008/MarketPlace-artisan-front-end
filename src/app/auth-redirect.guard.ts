@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthService } from './auth.service'; // Assicurati di importare il tuo servizio di autenticazione
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,13 @@ export class AuthRedirectGuard implements CanActivate {
   canActivate(): boolean {
     // Verifica se l'utente è autenticato utilizzando il servizio AuthService
     const isAuthenticated = this.authService.isAuthenticated();
-
-    // Se l'utente è autenticato, reindirizzalo a un'altra pagina (ad esempio, la pagina principale)
-    if (isAuthenticated) {
-      this.router.navigate(['/home']); // Cambia '/home' con l'URL desiderato
-      return false; // Non consentire l'accesso alla pagina "login"
+    
+    // Se l'utente è autenticato, reindirizzalo alla pagina principale solo se non sta cercando di accedere alla pagina di login
+    if (isAuthenticated && !this.router.url.includes('/login')) {
+      this.router.navigate(['/home']);
+      return false; // Non consentire l'accesso alla pagina principale
     }
 
-    return true; // Lascia passare l'utente se non è autenticato
+    return true; // Lascia passare l'utente
   }
 }

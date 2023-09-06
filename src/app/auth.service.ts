@@ -7,7 +7,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private authenticatedSubject = new BehaviorSubject<boolean>(false);
+  private authenticatedSubject = new BehaviorSubject<boolean>(
+    localStorage.getItem('isLoggedIn') === 'true'
+  );
   private modalRef: BsModalRef | undefined;
 
   constructor(private modalService: BsModalService) {}
@@ -18,6 +20,8 @@ export class AuthService {
   }
 
   setAuthenticated(value: boolean): void {
+    // Memorizza lo stato di autenticazione nel localStorage
+    localStorage.setItem('isLoggedIn', value ? 'true' : 'false');
     this.authenticatedSubject.next(value);
   }
 

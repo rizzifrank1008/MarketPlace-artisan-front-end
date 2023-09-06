@@ -13,6 +13,13 @@ export class LogoutModalComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngAfterViewInit(): void {
+    // Chiudi il modale dopo 3 secondi (3000 millisecondi)
+    setTimeout(() => {
+      this.closeModal();
+    }, 2000);
+  }
+
   closeModal(): void {
     this.modalRef.hide();
   }

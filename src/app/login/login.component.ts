@@ -4,6 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LoginService } from '../login.service';
 import { SuccessModalComponent } from '../success-modal/success-modal.component';
 import { AuthService } from '../auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,15 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private modalService: BsModalService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieService: CookieService
   ) { }
 
   ngOnInit(): void {
-    // Verifica se l'utente è già autenticato al caricamento del componente
-    if (this.authService.isAuthenticated()) {
+    // Verifica se l'utente è già autenticato utilizzando il cookie
+    const isAuthenticated = this.cookieService.get('isAuthenticated') === 'true';
+
+    if (isAuthenticated) {
       this.router.navigate(['/home']); // Reindirizza l'utente alla home
     }
   }
@@ -39,10 +43,13 @@ export class LoginComponent implements OnInit {
       response => {
         // Se il login è riuscito, segnala che l'utente è autenticato
         this.authService.setAuthenticated(true);
-  
+        
+        // Imposta un cookie per segnalare l'autenticazione
+        this.cookieService.set('isAuthenticated', 'true');
+    
         // Reindirizza l'utente alla home
         this.router.navigate(['/home']);
-  
+    
         // Mostra il modale di successo
         this.mostraModaleSuccesso();
       },

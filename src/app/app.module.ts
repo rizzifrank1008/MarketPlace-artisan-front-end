@@ -20,7 +20,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AuthService } from './auth.service';
 import { LogoutModalComponent } from './logout-modal/logout-modal.component'; // Assicurati che il percorso sia corretto
-
+import { CookieModule } from 'ngx-cookie';
+import { AuthRedirectGuard } from './auth-redirect.guard';
 
 @NgModule({
   declarations: [
@@ -44,12 +45,13 @@ import { LogoutModalComponent } from './logout-modal/logout-modal.component'; //
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
+    CookieModule.forRoot(),
     
    
     
   ],
   
-  providers: [RegistrationService,PubblicazoneService,AuthService],
+  providers: [RegistrationService,PubblicazoneService,AuthService,AuthRedirectGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
