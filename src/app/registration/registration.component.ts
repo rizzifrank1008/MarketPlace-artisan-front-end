@@ -12,8 +12,10 @@ export class RegistrationComponent {
   cognome: string = '';
   codiceFiscale: string = '';
   cellulare: string = '';
+  residenza: string='monte san biagio';
   email: string = '';
   password: string = '';
+  roles: string= "ROLE_USER";
 
   constructor(private registrationService: RegistrationService) { }
 
@@ -23,9 +25,10 @@ export class RegistrationComponent {
       cognome: this.cognome,
       codiceFiscale: this.codiceFiscale,
       cellulare: this.cellulare,
+      residenza: this.residenza,
       email: this.email,
       password: this.password,
-      
+      roles: this.roles,
     };
 
     this.registrationService.register(formData).subscribe(

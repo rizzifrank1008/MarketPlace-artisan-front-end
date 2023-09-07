@@ -43,10 +43,12 @@ export class LoginComponent implements OnInit {
       response => {
         // Se il login è riuscito, segnala che l'utente è autenticato
         this.authService.setAuthenticated(true);
+        console.log(response.token);
         
         // Imposta un cookie per segnalare l'autenticazione
         this.cookieService.set('isAuthenticated', 'true');
-    
+        this.cookieService.set('jwt', response.token);
+        
         // Reindirizza l'utente alla home
         this.router.navigate(['/home']);
     
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.error('Errore durante il login:', error);
+        
         // Gestisci l'errore qui, ad esempio mostrando un messaggio di errore all'utente
       }
     );
