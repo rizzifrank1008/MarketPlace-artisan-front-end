@@ -5,25 +5,7 @@
                 <form class="product-form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="immagine">Immagine:</label>
-                        <div class="image-upload">
-                            <input type="file" id="immagine" name="immagine" accept="image/*" (change)="previewImage($event)" #inputFile style="display: none;"
-                            [(ngModel)]="imagePreview" required>
-
-                        
-                            <div class="image-preview-container" [ngClass]="{'show-preview': imagePreview !== null}">
-                                <div class="image-preview" (click)="selectImage()">
-                                    <!-- Icona di default -->
-                                    <i class="material-icons" [hidden]="imagePreview !== null">image</i>
-                                    <!-- Anteprima dell'immagine -->
-                                    <img [src]="imagePreview" alt="Anteprima immagine" [hidden]="imagePreview === null">
-                                </div>
-                            </div>
-                            
-                            
-                            
-                            <button type="button" (click)="selectImage()" [hidden]="imagePreview !== null">Carica immagine</button>
-                        </div>
-                        
+                        <input type="file" (change)="onFileSelected($event)" accept="image/*" #fileInput>
                     </div>
                     <div class="form-group">
                         <label for="nome">Nome del prodotto:</label>

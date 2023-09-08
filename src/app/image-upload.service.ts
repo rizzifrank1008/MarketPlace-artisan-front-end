@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PubblicazoneService {
+export class ImageUploadService {
 
-  private baseUrl = 'http://localhost:8081/api/postProdotto'; // l'URL  backend
+  
+  private baseUrl = 'http://localhost:8081/api/uploadImage'; // l'URL  backend
 
   constructor(private http: HttpClient) { }
 
@@ -16,4 +17,3 @@ export class PubblicazoneService {
     return this.http.post(url, data);
   }
 }
- 

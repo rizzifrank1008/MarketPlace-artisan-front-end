@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { PubblicazoneService } from '../pubblicazone.service';
+import { ImageUploadService } from '../image-upload.service';
 
 @Component({
   selector: 'app-pubblicazione',
@@ -12,37 +13,51 @@ export class PubblicazioneComponent {
   materiale: string = '';
   descrizione: string = '';
   prezzo: number =0;
-  immagine: string ='';
+  imageId: number =0;
   utenteId: number=1;
-
+  
+  image?: File;
 
   @ViewChild('inputFile', { static: false }) inputFile!: ElementRef;
 
   imagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private pubblicazoneService: PubblicazoneService) {}
+  constructor(private pubblicazoneService: PubblicazoneService ,private imageUploadService: ImageUploadService) {}
 
   onSubmit() {
+
     const productData = {
-      immagine: this.imagePreview, 
+      imageId: this.imagePreview, 
       nome: this.nome,
       materiale: this.materiale,
       descrizione: this.descrizione,
       prezzo: this.prezzo,
       utenteId: this.utenteId,
     };
+    
+    const imageData = {
+      image: this.image,
+    };
+    
 
-    // Chiamata al servizio per inviare i dati al backend
-    this.pubblicazoneService.publish(productData).subscribe(
+
+   
+    this.imageUploadService.publish(imageData).subscribe(
       (response) => {
-        console.log('Prodotto inserito con successo nel database', response);
+         console.log(imageData);
+        console.log('immagine  inserita con successo nel database', response);
         // Puoi anche reindirizzare l'utente o fare altre azioni qui
       },
       (error) => {
-        console.error('Errore durante l inserimento del prodotto', error);
+        console.log(imageData);
+        console.error('Errore durante l inserimento dell immagine', error);
         // Gestisci l'errore qui
       }
     );
+
+
+    // Chiamata al servizio per inviare i dati al backend
+ 
   }
 
 
@@ -64,6 +79,14 @@ previewImage(event: any) {
   }
 }
 
+selectedFile: File | null = null;
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.image = file;
+    }
+  } 
 
   
 }

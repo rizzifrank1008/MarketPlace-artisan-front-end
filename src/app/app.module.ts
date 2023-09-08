@@ -22,6 +22,7 @@ import { AuthService } from './auth.service';
 import { LogoutModalComponent } from './logout-modal/logout-modal.component'; // Assicurati che il percorso sia corretto
 import { CookieModule } from 'ngx-cookie';
 import { AuthRedirectGuard } from './auth-redirect.guard';
+import { ImageUploadService } from './image-upload.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { AuthRedirectGuard } from './auth-redirect.guard';
     
   ],
   
-  providers: [RegistrationService,PubblicazoneService,AuthService,AuthRedirectGuard],
+  providers: [RegistrationService,PubblicazoneService,ImageUploadService,AuthService,AuthRedirectGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
