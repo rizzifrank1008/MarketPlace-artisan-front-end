@@ -7,13 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class ImageUploadService {
 
-  
-  private baseUrl = 'http://localhost:8081/api/uploadImage'; // l'URL  backend
+  private baseUrl = 'http://localhost:8081/api/uploadImage'; // l'URL backend per l'upload delle immagini
 
   constructor(private http: HttpClient) { }
 
-  publish(data: any): Observable<any> {
+  uploadImage(image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+
     const url = `${this.baseUrl}`;
-    return this.http.post(url, data);
+    return this.http.post(url, formData);
   }
 }

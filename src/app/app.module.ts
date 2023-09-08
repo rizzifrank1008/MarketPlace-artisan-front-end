@@ -23,6 +23,7 @@ import { LogoutModalComponent } from './logout-modal/logout-modal.component'; //
 import { CookieModule } from 'ngx-cookie';
 import { AuthRedirectGuard } from './auth-redirect.guard';
 import { ImageUploadService } from './image-upload.service';
+import { ProdottoService } from './prodotto.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { ImageUploadService } from './image-upload.service';
     
   ],
   
-  providers: [RegistrationService,PubblicazoneService,ImageUploadService,AuthService,AuthRedirectGuard],
+  providers: [RegistrationService,PubblicazoneService,ImageUploadService,AuthService,AuthRedirectGuard ,ProdottoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
