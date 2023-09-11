@@ -1,6 +1,6 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { PubblicazoneService } from '../pubblicazone.service';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ImageUploadService } from '../image-upload.service';
+import { PubblicazoneService } from '../pubblicazone.service';
 
 @Component({
   selector: 'app-pubblicazione',
@@ -29,15 +29,19 @@ export class PubblicazioneComponent {
     if (this.image) {
       this.imageUploadService.uploadImage(this.image).subscribe(
         (imageResponse) => {
+          console.log(imageResponse);
+
           // L'immagine è stata caricata con successo, ora puoi creare il prodotto
           const productData = {
-            imageId: imageResponse.id, // Usa l'ID dell'immagine restituito dalla risposta
+            imageId: imageResponse.imageId, // Usa l'ID dell'immagine restituito dalla risposta
             nome: this.nome,
             materiale: this.materiale,
             descrizione: this.descrizione,
             prezzo: this.prezzo,
             utenteId: this.utenteId,
           };
+
+          console.log(productData);
 
           // Invia i dati del prodotto al servizio pubblicazione
           this.pubblicazoneService.publish(productData).subscribe(

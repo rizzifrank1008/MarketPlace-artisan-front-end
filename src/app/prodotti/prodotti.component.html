@@ -5,7 +5,7 @@
     <div class="productRow">
         <div class="productCard" *ngFor="let product of products; let i = index">
             <div class="productImage">
-                <img [src]="product.image" [alt]="product.title">
+                <img [src]="product.img" [alt]="product.title">
                 <button class="addToCartButton" (click)="addToCart(product)">Aggiungi al carrello</button>
             </div>
             <div class="productDetails">

@@ -1,37 +1,9 @@
 
 <div class="containerCalc">
-    <app-navbar>
-    
-    </app-navbar>
-
-    <ng-container *ngIf="isHomeRoute()">
-        <app-home></app-home>
-      </ng-container>
-
-      <ng-container *ngIf="isProdottiRoute()">
-        <app-prodotti></app-prodotti>
-      </ng-container>
-
-      <ng-container *ngIf="isCarrelRoute()">
-        <app-carrel></app-carrel>
-      </ng-container>
-
-      <ng-container *ngIf="isRegistrationRoute()">
-        <app-registration></app-registration>
-      </ng-container>
-
-      <ng-container *ngIf="isLoginRoute()">
-        <app-login></app-login>
-      </ng-container>
-
-      <ng-container *ngIf="isPubblicazioneRoute()">
-        <app-pubblicazione></app-pubblicazione>
-      </ng-container>
-
-      <app-footer></app-footer>
-
-    
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
 </div>
-  <!-- Contenuto specifico della HomeComponent -->
- 
-    
+
+
+

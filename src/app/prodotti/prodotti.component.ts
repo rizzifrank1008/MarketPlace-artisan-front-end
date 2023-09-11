@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  GetImageService
+} from '../get-image.service';
 import { ProdottoService } from '../prodotto.service';
-import { GetImageService
- } from '../get-image.service';
 @Component({
   selector: 'app-prodotti',
   templateUrl: './prodotti.component.html',
@@ -11,26 +12,22 @@ export class ProdottiComponent implements OnInit {
   constructor(private prodottoService: ProdottoService , private getImageService: GetImageService ) { }
 
   products: any[] = [];
- 
+
   ngOnInit() {
-    
+
     this.prodottoService.getProducts().subscribe((data: any[]) => {
-      
+
       console.log(data);
       this.products = data;
       this.products.forEach(product => {
-
-        
-        this.getImageService.getImage(product.image.imageId).subscribe((imagePng: any)=>{
-          product.img=imagePng
-        })
-
+        if(product.image)
+          product.img= "http://localhostproduct:8081/api/v1/getImage/" + product.image.imageId
       });
       console.log(data);
     });
   }
 
   addToCart(product: any) {
-    
+
   }
 }
