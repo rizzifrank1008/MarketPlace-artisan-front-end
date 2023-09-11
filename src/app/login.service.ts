@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private baseUrl = 'http://marketplace:8081/api/getToken'; 
+  private baseUrl = 'http://localhost:8081/api/v1/getToken'; 
 
   constructor(private http: HttpClient) { }
 

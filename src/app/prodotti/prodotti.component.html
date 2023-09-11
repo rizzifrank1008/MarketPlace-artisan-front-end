@@ -1,25 +1,27 @@
 <div class="productsContainer">
     <h1>products</h1>
-    <h3>qui potrai vedere la lista di tutti i prodotti </h3>
-  
-    <div *ngFor="let product of products" class="productCard">
-      <div class="productImage">
-        <img [src]="product.image" [alt]="product.title">
-        <button class="addToCartButton" (click)="addToCart(product)">Aggiungi al carrello</button>
-      </div>
-      <div class="productDetails">
-        <div class="productTitle">{{ product.title }}</div>
-        <div class="productDescription">{{ product.description }}</div>
-        <div class="productPrice">{{ product.price | currency:'EUR' }}</div>
-        <div class="productRating">
-          <span class="star">★</span>
-          <span class="star">★</span>
-          <span class="star">★</span>
-          <span class="star">★</span>
-          <span class="star">★</span>
-          (Recensioni)
+    <h3>qui potrai vedere la lista di tutti i prodotti</h3>
+
+    <div class="productRow">
+        <div class="productCard" *ngFor="let product of products; let i = index">
+            <div class="productImage">
+                <img [src]="product.image" [alt]="product.title">
+                <button class="addToCartButton" (click)="addToCart(product)">Aggiungi al carrello</button>
+            </div>
+            <div class="productDetails">
+                <div class="productTitle">{{ product.nome }}</div>
+                <div class="productDescription">{{ product.descrizione }}</div>
+                <div class="productPrice">{{ product.prezzo | currency:'EUR' }}</div>
+                <div class="productDescription">{{ product.materiale }}</div>
+                <div class="productRating">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    (Recensioni)
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
+</div>

@@ -1,22 +1,30 @@
-
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
 
-  private baseUrl = 'http://localhost:8081/api/addUser'; // l'URL  backend
+  private apiUrl = 'http://localhost:8081/api/v1/addUser'; // l'URL  backend
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   register(data: any): Observable<any> {
-    const url = `${this.baseUrl}`;
-    return this.http.post(url, data);
+    const url = `${this.apiUrl}`;
+    
+    // Creazione dell'header con il token JWT
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.cookieService.get('jwt')
+    });
+    
+    // Ora inviamo la richiesta POST con l'header dell'autorizzazione
+    return this.http.post<any[]>(url, data, { headers: headers });
   }
 }
+
 
 /* Il metodo register accetta un parametro data ( i dati del modulo di registrazione) 
 e restituisce un'Observable contenente la risposta dalla chiamata POST al backend. Utilizza il modulo 
