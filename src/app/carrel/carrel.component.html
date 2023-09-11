@@ -3,7 +3,7 @@
     <div class="cartProducts">
       <div class="productDetails" *ngFor="let product of cartItems">
         <div class="productImage">
-          <img [src]="product.img" [alt]="product.title">
+          <img [src]="product.image" width="100px" [alt]="product.title">
         </div>
         <div class="productTitle">{{ product.nome }}</div>
         <div class="productDescription">{{ product.descrizione }}</div>
@@ -11,4 +11,3 @@
       </div>
     </div>
   </div>
-  

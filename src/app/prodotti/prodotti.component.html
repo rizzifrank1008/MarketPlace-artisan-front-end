@@ -6,7 +6,7 @@
         <div class="productCard" *ngFor="let product of products; let i = index">
             <div class="productImage">
                 <img [src]="product.img" [alt]="product.title">
-                <button class="addToCartButton" (click)="addToCart(product)">Aggiungi al carrello</button>
+                <button class="addToCartButton" (click)="addToCart(product.prodottoId)">Aggiungi al carrello</button>
             </div>
             <div class="productDetails">
                 <div class="productTitle">{{ product.nome }}</div>

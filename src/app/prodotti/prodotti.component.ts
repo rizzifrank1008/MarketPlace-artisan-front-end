@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdottoService } from '../prodotto.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ProdottoService } from '../prodotto.service';
 
 @Component({
   selector: 'app-prodotti',
@@ -27,16 +27,21 @@ export class ProdottiComponent implements OnInit {
     });
   }
 
-  addToCart(product: any) {
+  addToCart(productId: any) {
+    console.log(productId);
+
     // Recupera il carrello dal cookie o inizializzalo come un array vuoto
     const cartItems = JSON.parse(this.cookieService.get('cartItems') || '[]');
 
     // Aggiungi il prodotto al carrello
-    cartItems.push(product);
+    cartItems.push(productId);
 
     // Salva il carrello aggiornato nei cookie
     this.cookieService.set('cartItems', JSON.stringify(cartItems));
 
-    console.log('Aggiunto al carrello:', product);
+    console.log(this.cookieService.get('cartItems'));
+
+
+
   }
 }
